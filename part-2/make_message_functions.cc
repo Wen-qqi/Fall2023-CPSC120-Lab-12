@@ -1,4 +1,7 @@
-// TODO: Add your header
+// Wen Fan
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
+// Partners: @iloi05
 
 #include "make_message_functions.h"
 
@@ -6,39 +9,33 @@
 
 bool HasMatchingFileExtension(const std::string& file_name,
                               const std::string& extension) {
-  // TODO: Copy and paste the body of this function from part-1.
-  return false;
+  int file_name_length = file_name.size();
+  int extension_length = extension.size();
+  bool is_long_enough = (file_name_length >= extension_length);
+  bool ends_with_extentions = false;
+  if (is_long_enough) {
+    int period_location = (file_name_length - extension_length);
+    ends_with_extentions =
+        (file_name.compare(period_location, extension_length, extension) == 0);
+    return ends_with_extentions;
+  }
+
+  return ends_with_extentions;
 }
 
-// Secret global variable to make the randome number generator
-// predictable
 std::seed_seq rng_seed{1, 2, 3, 4, 5};
 
-// Secret global variable that is used by RandomDouble_01()
 RandomNumberGenerator rng_01{0, 1, rng_seed};
 
-// Secret global variable that is used by RandomDouble_11()
 RandomNumberGenerator rng_11{-1, 1, rng_seed};
 
-// Secret global variable that is used by CoinFlip()
 RandomNumberGenerator rng_coin_flip{-1, 1, rng_seed};
 
-// Returns a random double between o and 1
-double RandomDouble01() {
-  // TODO: Using rng_01, call Next() and return the next random number.
-  return 0;
-}
+double RandomDouble01() { return rng_01.Next(); }
 
-// Returns a random double between -1 and 1
-double RandomDouble11() {
-  // TODO: Using rng_11, call Next() and return the next random number.
-  return 0;
-}
+double RandomDouble11() { return rng_11.Next(); }
 
-/// Return a True or False depending on a random value.
-/// Generates a random number and then decides to return True or False
 bool CoinFlip() {
-  // TODO: Using rng_coin_flip, call Next() and return true if the randome
-  // number is greater than 0.0 and false otherwise.
-  return false;
+  double value = rng_coin_flip.Next();
+  return (value > 0.0);
 }
